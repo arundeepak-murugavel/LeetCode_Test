@@ -51,41 +51,28 @@ public class Day4_MedianOfTwoArray {
 		int[] c1 = new int[nums1.length + nums2.length];
 		copyArrayOddEven(nums1, nums2, c1);
 		Arrays.sort(c1);
-		int median = 0;
+
 		double d = 0.0;
 		if (c1.length % 2 != 0) {
-			median = (c1.length) / 2;
-			d = (double) c1[median];
+			d = (double) c1[(c1.length) / 2];
+			return d;
+		} else {
+			d = (double) (c1[((c1.length) / 2) - 1] + c1[(c1.length) / 2]) / 2;
 			return d;
 		}
-
-		if (c1.length % 2 == 0) {
-			median = (c1.length) / 2;
-
-			int adjacent = median - 1;
-
-			d = (double) (c1[adjacent] + c1[median]) / 2;
-			return d;
-		}
-
-		return d;
 
 	}
 
 	// Func to Merge two Arrays
 	public static void copyArrayOddEven(int a[], int b[], int c[]) {
-		int i, j, k = 0;
-		for (i = 0, j = 0; i < a.length && j < b.length; i++, j++) {
-			c[k++] = a[i];
-			c[k++] = b[j];
+		for (int i = 0; i < a.length; i++) {
+
+			c[i] = a[i];
 		}
 
-		while (i < a.length) {
-			c[k++] = a[i++];
-		}
+		for (int i = 0; i < b.length; i++) {
 
-		while (j < b.length) {
-			c[k++] = b[j++];
+			c[a.length + i] = b[i];
 		}
 
 	}
@@ -100,4 +87,10 @@ public class Day4_MedianOfTwoArray {
  * 
  * Memory Usage: 50.5 MB, less than 8.52% of Java online submissions for Median
  * of Two Sorted Arrays.
+ */
+
+/*
+ * Runtime: 3 ms, faster than 81.41% of Java online submissions for Median of
+ * Two Sorted Arrays. Memory Usage: 43.5 MB, less than 74.25% of Java online
+ * submissions for Median of Two Sorted Arrays.
  */
